@@ -12,6 +12,8 @@ class FightViewController: UIViewController {
 
     @IBOutlet
     private var enemyHealthView: UIProgressView!
+    
+    var fightPresenter: FightPresenter!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -19,13 +21,27 @@ class FightViewController: UIViewController {
         myHealthView.progress = 1
         enemyHealthView.progress = 1
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        fightPresenter.startFight()
+        myHealthView.progress = 1
+        enemyHealthView.progress = 1
+    }
 
     @IBAction
     private func basicAttackTap() {
+        let (myHealth, enemyHealth) = fightPresenter.basicAttackTap()
+        myHealthView.progress = Float(myHealth) / 100
+        enemyHealthView.progress = Float(enemyHealth) / 100
     }
 
     @IBAction
     private func magicAttackTap() {
+        let (myHealth, enemyHealth) = fightPresenter.magicAttackTap()
+        myHealthView.progress = Float(myHealth) / 100
+        enemyHealthView.progress = Float(enemyHealth) / 100
     }
 }
 

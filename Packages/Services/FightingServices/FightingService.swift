@@ -1,18 +1,6 @@
-//
-//  FightService.swift
-//  FightingSimulator2999
-//
-//  Created by Teacher on 11.03.2023.
-//
-
-import Foundation
 import Combine
 
-struct Enemy {
-    var health: Int
-}
-
-protocol FightService {
+public protocol FightService {
     var myHealth: AnyPublisher<Int, Never> { get }
     var enemyHealth: AnyPublisher<Int, Never> { get }
     /// Restores player and enemy health to 100
